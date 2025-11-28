@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FF9E9E9E</color>
+    <color name="light_gray">#FFEEEEEE</color>
+    <color name="dark_gray">#FF424242</color>
+
+    <!-- Material Primary Colors -->
+    <color name="primary">#2196F3</color> <!-- Blue -->
+    <color name="primary_dark">#1976D2</color> <!-- Darker Blue -->
+    <color name="primary_light">#BBDEFB</color>
+
+    <!-- Secondary / Accent Colors -->
+    <color name="secondary">#03DAC5</color> <!-- Teal -->
+    <color name="accent">#FF4081</color> <!-- Pink Accent -->
+    <color name="success">#4CAF50</color> <!-- Green -->
+    <color name="warning">#FFC107</color> <!-- Amber -->
+    <color name="error">#F44336</color> <!-- Red -->
+    <color name="info">#2196F3</color> <!-- Blue -->
+
+    <!-- Background and Surface -->
+    <color name="background">#F5F5F5</color>
+    <color name="surface">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_secondary">#000000</color>
+
+    <!-- Transparent Variants -->
+    <color name="transparent">#00000000</color>
+    <color name="half_transparent_black">#80000000</color>
+
+    <!-- Gradients / Special -->
+    <color name="gradient_start">#42A5F5</color>
+    <color name="gradient_end">#478ED1</color>
+</resources>

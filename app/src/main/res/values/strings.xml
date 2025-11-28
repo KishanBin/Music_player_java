@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">firstJavaProject</string>
+    <string name="song_list_title">Song List</string>
+    <string name="song_icon">Song Image</string>
+    <string name="song_name">Song name</string>
+    <string name="artist_name">Artist name</string>
+    <string name="play_next">next</string>
+    <string name="play_previous">previous</string>
+    <string name="play_pause">play/pause</string>
+</resources>
