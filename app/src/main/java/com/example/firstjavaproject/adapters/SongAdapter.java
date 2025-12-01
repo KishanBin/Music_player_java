@@ -1,6 +1,7 @@
 package com.example.firstjavaproject.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+
+import com.example.firstjavaproject.models.AlbumArtUtil;
 import com.example.firstjavaproject.models.Song;
 import java.util.List;
 import com.example.firstjavaproject.R;   // ← ADD THIS
@@ -39,10 +42,12 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         Song song = songs.get(position);
 
-        if (song.getImage() != null) {
-            img.setImageBitmap(song.getImage());
+        Bitmap albumArt = AlbumArtUtil.getAlbumArt(context, song.getAlbumId());
+
+        if (albumArt != null) {
+            img.setImageBitmap(albumArt);
         } else {
-            img.setImageResource(R.drawable.android_music_icon); // default icon
+            img.setImageResource(R.drawable.android_music_icon);
         }
 
         title.setText(song.getSong_name());

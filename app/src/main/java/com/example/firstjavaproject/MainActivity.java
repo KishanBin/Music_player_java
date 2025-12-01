@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.ListView;
@@ -22,9 +23,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-   ListView listView;
-   ArrayList<Song> songList;
-   SongAdapter adapter;
+    ListView listView;
+    ArrayList<Song> songList;
+    SongAdapter adapter;
 
     private static final int PERMISSION_CODE = 1;
 
@@ -34,30 +35,41 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                1);
-
 
         listView = findViewById(R.id.songList);
 
         songList = new ArrayList<>();
 
-        // Check permission first
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED) {
-
-            loadSongs(); // permission already given
-
+        if (hasPermission()) {
+            loadSongs();
         } else {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    PERMISSION_CODE
-            );
+            requestPermission();
+        }
+
+    }
+
+    private boolean hasPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_AUDIO)
+                    == PackageManager.PERMISSION_GRANTED;
+        } else {
+            return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED;
         }
     }
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_MEDIA_AUDIO},
+                    PERMISSION_CODE);
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_CODE);
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -81,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     private void loadSongs() {
         songList = getAllAudio();  // 🔥 fetching phone songs
 
+//        System.out.println("Kishan" + songList);
+
         adapter = new SongAdapter(this, songList);
         listView.setAdapter(adapter);
 
@@ -91,9 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
             intent.putExtra("title",clickedSong.getSong_name());
             intent.putExtra("artist", clickedSong.getArtist_name());
-            intent.putExtra("image", clickedSong.getImage());
             intent.putExtra("path", clickedSong.getPath());          // ADD THIS
             intent.putExtra("albumId", clickedSong.getAlbumId());    // ADD THIS
+            intent.putExtra("songList",songList);
+            intent.putExtra("position", position);   // send clicked index
 
             startActivity(intent);
         });
@@ -132,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // You may want to update your Song model to accept path + albumId
                 songs.add(new Song(
-                        albumImage,   // pass the Bitmap instead of drawable
                         title,
                         artist,
                         path,

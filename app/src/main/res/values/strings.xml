@@ -7,4 +7,5 @@
     <string name="play_next">next</string>
     <string name="play_previous">previous</string>
     <string name="play_pause">play/pause</string>
+    <string name="albumart">AlbumArt</string>
 </resources>

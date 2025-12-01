@@ -16,9 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/song_name"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:paddingBottom="20dp"
+
         android:maxLines="1"
         android:ellipsize="end"
         />
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/artist_name"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:paddingBottom="20dp"
         android:maxLines="1"
@@ -43,6 +43,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/albumart"
         android:scaleType="centerCrop"
         android:layout_marginTop="50dp"
         />
@@ -54,7 +55,7 @@
 
     <!-- Track Line (SeekBar) -->
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -72,8 +73,9 @@
         <!-- Previous Button -->
         <ImageButton
             android:id="@+id/prevButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:rotation="180"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/baseline_skip_next_24"
             android:layout_margin="20dp"
             android:contentDescription="@string/play_previous"
@@ -84,7 +86,8 @@
             android:id="@+id/btnPlay"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/baseline_play_arrow_24"
+            android:src="@drawable/baseline_pause_24"
+            android:background="@android:color/transparent"
             android:layout_margin="15dp"
             android:contentDescription="@string/play_pause" />
 
@@ -92,8 +95,8 @@
         <!-- Next Button -->
         <ImageButton
             android:id="@+id/nextButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/baseline_skip_next_24"
             android:layout_margin="20dp"
             android:contentDescription="@string/play_next"
